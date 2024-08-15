@@ -1,0 +1,30 @@
+#Persistent
+SetTitleMatchMode, 2
+
+views := ["ASSINE M", "HME", "VILLA BRUNO"]
+
+Loop {
+    ; Assurez-vous que la fenêtre iVMS-4200 est active
+    IfWinExist, iVMS-4200
+    {
+        WinActivate
+        
+        ; Parcourez chaque vue
+        for index, view in views
+        {
+            ; Simulez le passage à la vue (exemple)
+            ; Ceci dépend de l'interface exacte. Vous pourriez avoir besoin de personnaliser les raccourcis ou les commandes ici
+            Send, {Alt} ; Appuie sur Alt pour accéder aux menus
+            Sleep, 100
+            Send, %view% ; Tape le nom de la vue
+            Sleep, 100
+            Send, {Enter} ; Appuie sur Enter pour sélectionner la vue
+            Sleep, 5000 ; Attends 5 secondes avant de passer à la suivante
+        }
+    }
+    else
+    {
+        MsgBox, L'application iVMS-4200 n'est pas ouverte.
+        ExitApp
+    }
+}
